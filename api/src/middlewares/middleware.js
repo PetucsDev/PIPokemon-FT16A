@@ -2,12 +2,12 @@ const fetch = require("node-fetch");
 const {Pokemon, Tipo} = require("../db.js");
 
 const f = async (by) =>{
-    const api = await fetch("https://pokeapi.co/api/v2/pokemon?limit=40");
+    const api = await fetch("https://pokeapi.co/api/v2/pokemon?limit=40"); // podriamos agregar el `api ${by}` o podriamos dejarlo sin un valor y preguntar antes de hacer la consulta REVISAR BIEN EN LA DOC DE LA API
     const data = await api.json();
     const db = await Pokemon.findAll({include: Tipo});
 
     var base = [...db,...data.results];
-
+    
     if(by === "2"){
         base = [...db];
     }
@@ -17,7 +17,7 @@ const f = async (by) =>{
 
 
     var infoPokemon = [];
-
+                                                    //PODRIA USAR EL FOREACH Y LUEGO RE MAPEAR Y TRAER LOS DATOS
     for (let i = 0; i < base.length; i++) {
         if(!base[i]) return infoPokemon;
         if(base[i].url){
@@ -130,4 +130,4 @@ module.exports = {
     f,
     forName,
     forId
-}
+};
