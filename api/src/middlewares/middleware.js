@@ -13,7 +13,9 @@ const f = async (by) =>{
     }
     else if(by === "1"){
         base = [...data.results];
+
     }
+    
 
 
     var infoPokemon = [];

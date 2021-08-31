@@ -1,5 +1,5 @@
 const {Router} = require("express");
-const {Pokemon, Tipo} = require("../db.js");
+const {Pokemon} = require("../db.js");
 const {f, forName, forId} = require("../middlewares/middleware.js");
 
 
@@ -14,7 +14,7 @@ router.get("/", async (req, res)=>{
         if(!pokemonInfo.length){
             return res.json({f:"El pokemon no existe"});
         }
-        return res.json(pokemonInfo); //Podria crear un objeto que tenga un "cartel de error" con su respectivo codigo. res.status = codigo
+        return res.json(pokemonInfo); 
     }
 
 
