@@ -11,9 +11,11 @@ export const navbar = () => {
                     <img src = "" alt = ""/>
                 </Link>
                 <ul>
-                            //VER COMO ORGANIZAR LAS PAGINAS XDN'T
+                            <li><Link to="/home">Pokedex</Link></li>
+                            <li><Link to="/create">Create Pokemon</Link></li>
+
                 </ul>
             </header>
         </div>
-    )
-}
+    );
+};

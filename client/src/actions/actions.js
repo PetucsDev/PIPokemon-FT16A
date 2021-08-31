@@ -34,7 +34,7 @@ export const filters = (num) => async (dispatch) => {
     const data = await res.json();
 
     dispatch({
-        type: "BY_TYPE",
+        type: "FILTER",
         payload: data
     });
 };
@@ -52,4 +52,12 @@ export const add = (pokemon) => (dispatch) => {
         payload: pokemon
     });
 };
+
+export const type = (type) => (dispatch) => {
+    dispatch({
+        type: "BY_TYPE",
+        payload: type
+    });
+};
+
 

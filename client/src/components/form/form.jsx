@@ -4,14 +4,14 @@ import {getPokemons} from "../../actions";
 import style from  "./form.module.css";  
 
 
-export const form = () => {
+export const Form = () => {
     const dispatch = useDispatch();
     const options = useSelector((store) => store.types);
   
     const validate = (input) => {
       let err = {};
       if (!input.name) {
-        err.name = "El name es obligatorio";
+        err.name = "El nombre es obligatorio";
       }
   
       return err;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./card.css";
 
 
-export const card = ({arr, img}) => {
+export const Card = ({arr, img}) => {
     return (
         <>
           <div className="container">
