@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import style from "./search.module.css";
 import {useSelector, useDispatch} from "react-redux";
-import {filters, getName, order, type} from "../../actions";
+import {filters, getName, order, type} from "../../actions/actions";
 
 export const Search = () => {
     const dispatch = useDispatch();
@@ -58,7 +58,7 @@ export const Search = () => {
           <select name="creado" className={button} onChange={creadoBy}>
             <option value="0">Creado por:</option>
             <option value="1">API</option>
-            <option value="2">Fandom</option>
+            <option value="2">Por Mi</option>
           </select>
           <select name="Ordenar" className={button} onChange={orderBy}>
             <option value="">Ordenar por:</option>

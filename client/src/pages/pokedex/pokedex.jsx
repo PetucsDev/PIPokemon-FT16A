@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import style from "./pokedex.module.css";
 import {Card} from "../../components/cards/card";
 import {Search} from "../../components/search/search";

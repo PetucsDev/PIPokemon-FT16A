@@ -1,38 +1,31 @@
 const fetch = require("node-fetch");
 const {Pokemon, Tipo} = require("../db.js");
 
-const f = async (by) =>{
-    const api = await fetch("https://pokeapi.co/api/v2/pokemon?limit=40"); // podriamos agregar el `api ${by}` o podriamos dejarlo sin un valor y preguntar antes de hacer la consulta REVISAR BIEN EN LA DOC DE LA API
+const getAll = async () =>{
+    const api = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10"); 
     const data = await api.json();
+    
     const db = await Pokemon.findAll({include: Tipo});
 
     var base = [...db,...data.results];
-    
-    if(by === "2"){
-        base = [...db];
-    }
-    else if(by === "1"){
-        base = [...data.results];
-
-    }
-    
 
 
     var infoPokemon = [];
-                                                    //PODRIA USAR EL FOREACH Y LUEGO RE MAPEAR Y TRAER LOS DATOS
+                                                    
     for (let i = 0; i < base.length; i++) {
         if(!base[i]) return infoPokemon;
         if(base[i].url){
             const pokemon = await fetch(base[i].url);
             const info = await pokemon.json();
 
-            infoPokemon.push({
+            infoPokemon.push(/*info*/{
                     id: info.id,
                     name:info.name,
                     type: info.types.map((t) => t.type.name),
                     img: info.sprites.versions["generation-v"]["black-white"].animated.front_default,
                     fuerza: info.stats[1].base_stat
-            });
+            }
+            );
         } else{
             infoPokemon.push({
                 id: base[i].id,
@@ -43,8 +36,32 @@ const f = async (by) =>{
 
             });
         }
-        
+            
     }
+
+    // for (let i = 0; i < infoPokemon.length; i++) {
+    //     const pokemon = Pokemon.create({
+    //         name: infoPokemon[i].name,
+    //         //type: data.types.map((t)=> t.type.name),
+    //         img: infoPokemon[i].sprites.versions["generation-v"]["black-white"].animated.front_default,
+    //         vida: infoPokemon[i].stats[0].base_stat,
+    //         fuerza: infoPokemon[i].stats[1].base_stat,
+    //         defensa: infoPokemon[i].stats[2].base_stat,
+    //         velocidad: infoPokemon[i].stats[5].base_stat,
+    //         altura: infoPokemon[i].height,
+    //         peso: infoPokemon[i].weight
+    //     })
+
+    //     const tipo = infoPokemon[i].types.map((t)=> t.slot);
+    //      await pokemon.setTipos(tipos);
+    // }
+
+    // const allPokemon = Pokemon.findAll();
+
+    // return allPokemon;
+        
+    
+
     return infoPokemon;
 }
 
@@ -129,7 +146,7 @@ const forId = async(id) => {
 }
 
 module.exports = {
-    f,
+     getAll,
     forName,
     forId
 };

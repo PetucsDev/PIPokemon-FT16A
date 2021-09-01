@@ -3,6 +3,7 @@ const initialState = {
     pokemons: [],
     type: "",
     order:"",
+    team: []
 };
 
 

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getPokemons} from "../../actions";
+import {getPokemons} from "../../actions/actions";
 import style from  "./form.module.css";  
 
 
@@ -91,7 +91,7 @@ export const Form = () => {
               <label>Pokemon name</label>
               <input
                 type="text"
-                placeholder="pikachu.."
+                placeholder="Ingrese un nombre para el pokemon"
                 name="name"
                 value={data.name}
                 onChange={handleInputChange}

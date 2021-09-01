@@ -1,7 +1,7 @@
 import React  from "react";
 import {Form} from "../../components/form/form";
 
-export const create = () =>{
+export const Create = () =>{
     return(
         <div>
             <Form/>

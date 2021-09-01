@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import "./card.css";
 
 
-export const Card = ({arr, img}) => {
+export const Card = ({array, img}) => {
     return (
         <>
           <div className="container">
-            {arr.length ? (
-              arr.map((p) => (
+            {array.length ? (
+              array.map((p) => (
                 <Link to={`/pokedex/${p.id}`} key={p.name}>
                   <figure className={p.type[0]}>
                     <div className="cardImageContainer">
@@ -30,7 +30,7 @@ export const Card = ({arr, img}) => {
                   </figure>
                 </Link>
               ))
-            ) : arr.info ? (
+            ) : array.info ? (
               <img
                 src="https://media.giphy.com/media/UHAYP0FxJOmFBuOiC2/giphy.gif"
                 alt="Not found"

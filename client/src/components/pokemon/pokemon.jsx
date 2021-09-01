@@ -1,8 +1,8 @@
 import React , {useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {add} from "../../actions";
+import {add} from "../../actions/actions";
+import style from "./pokemon.module.css"
 
 
 export const Pokemon = () => {
