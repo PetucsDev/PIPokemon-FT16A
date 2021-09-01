@@ -1,6 +1,8 @@
 const {Router} = require("express");
 const {Pokemon, Tipo} = require("../db.js");
 const {getAll, forName, forId} = require("../metodos/metodos.js");
+const { Op } = require('sequelize');
+
 
 
 
@@ -8,78 +10,59 @@ const {getAll, forName, forId} = require("../metodos/metodos.js");
 const router = Router();
 
 router.get("/", async (req, res)=>{
-    let {name} = req.query;
-    let pokemonInfo = [];
+     var {name} = req.query;
+
+
     if(name){
-        name = name.toLowerCase();
-        pokemonInfo = await forName(name);
-        if(!pokemonInfo.length){
-            return res.json({getAll:"El pokemon no existe"});
-        }
-        return res.json(pokemonInfo); 
+        name.toLowerCase();
+        const pokemonInfo = await Pokemon.findAll({where:{name:name}});
+       
+        res.json(pokemonInfo);
     }
-
-
-    pokemonInfo = await getAll();
-    if(!pokemonInfo.length){
-        return res.json({getAll:"No hay mas pokemones registrados"});
+    else{
+        await getAll();
+        const pokemon = await Pokemon.findAll() 
+    
+        res.json(pokemon);
     }
-    res.json(pokemonInfo);
-
-    //await getAll();
-    //const pokemon = await Pokemon.findAll() 
-
-    //res.json(pokemon);
+   
 });
 
 
 router.get("/:id", async(req, res)=>{
     const {id} = req.params;
-    const pokemonInfo = await forId(id);
+    const pokemonInfo = await Pokemon.findByPk(id);
     if(!pokemonInfo.id){
-        return res.json({getAll:"El pokemon no existe"})
+        return res.status(404).send("Pokemon not Found");
     }
 
     res.json(pokemonInfo);
 });
 
-
-
-router.get("/:name", async(req, res)=>{
-    const {name} = req.params;
-    const pokemonInfo = await forName(name);
-    if(!pokemonInfo.name){
-        return res.json({getAll:"El pokemon no existe"})
-    }
-
-    res.json(pokemonInfo);
-});
 
 router.post("/", async (req, res)=>{
     let {name, vida, fuerza, defensa, velocidad, altura, peso, tipos} = req.body;
     console.log(req.body);
 
 
-     if( !vida || !fuerza || !defensa || !velocidad || !altura || !peso || !tipos){
-         return res.json({getAll: "Faltan propiedades por completar"});
+     if( !vida || !fuerza || !defensa || !velocidad || !altura || !peso){
+         return res.status(400).send("Faltan parametros por completar");
      }
 
     if(isNaN(vida)|| isNaN(fuerza)|| isNaN(defensa)|| isNaN(velocidad) || isNaN(altura) || isNaN(peso)){
-        return res.json({getAll: "Hay algunas propiedades que NO son numeros"})
+        return res.status(400).send("Hay algunas propiedades que NO son numeros")
     }                                                                      
 
     if(!name){
-        return res.json({getAll:"El nombre es obligatorio"});
+        return res.status(400).send("El nombre es obligatorio");
     }
 
     const existe = await Pokemon.findOne({where:{name: name}});
     if(existe){
-        return res.json({getAll:"El pokemon ya existe"});
+        return res.status(400).send("El pokemon ya existe");
     }
 
-    if(tipos.length === 0){
-        tipos = [];
-    }
+    
     const pokemon = await Pokemon.create({
 
         name: name.toLowerCase(),
@@ -97,7 +80,7 @@ router.post("/", async (req, res)=>{
    
 
     await pokemon.setTipos(tipos);
-    res.json({getAll:"El pokemon se ha creado con exito"});
+    return res.status(200).send("El pokemon ya existe");
 
 
 });
