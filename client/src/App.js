@@ -1,45 +1,26 @@
+import Landing from "./Components/Landing";
+import { Route } from 'react-router-dom';
+import Home from "./Components/Home/Home";
+import React from "react";
+import CardDetail from "./Components/Detail/CardDetail";
+import CreatePokemon from "./Components/CreatePokemon/CreatePokemon";
+// import Filter from "./Components/Filter/Filter";
+// import NavBar from "./Components/Navbar/NavBar";
 import './App.css';
-import {useEffect}  from "react";
-import {Route} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {LandingPage} from "./pages/landing/landing";
-import {Pokedex} from "./pages/pokedex/pokedex";
-import {Create} from "./pages/create/create";
-import {Navbar} from "./components/navbar/navbar";
-import {getPokemons, getTypes} from "./actions/actions";
-import {Pokemon} from "./components/pokemon/pokemon";
-import {Team} from "./pages/team/team";
-
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getTypes());
-    dispatch(getPokemons());
-  });
-
   return (
-    <>
-      <Navbar />
-      <Route exact path="/pokedex/:id" >
-        <Pokemon />
-      </Route>
-      <Route exact path="/">
-        <LandingPage />
-      </Route>
-      <Route exact path="/home">
-        <Pokedex />
-      </Route>
-      <Route exact path="/create">
-        <Create />
-      </Route>
-      <Route exact path="/team">
-        <Team/>
-      </Route>
+   <React.Fragment>  
+     <Route exact path="/" component={Landing} />
+     <Route path ="/home" component={Home} />
+     <Route path = "/cardDetail/:id" exact component = {CardDetail} />
+     <Route path = "/addPokemon" exact component = {CreatePokemon} />
+     {/* <Route path="/home" component={NavBar}></Route> */}
+     {/* <Route path = "/home/filter" component = {Filter} /> */}
      
-    </>
+   </React.Fragment>
+    
   );
 }
-
 
 export default App;

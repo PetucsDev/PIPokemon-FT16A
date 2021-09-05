@@ -1,0 +1,11 @@
+.filter {
+    display: flex;
+    justify-self: unset;
+    justify-content: flex-end;
+    color: black;
+    font-weight: bold;
+}
+
+option {
+    font-weight: bold;
+}

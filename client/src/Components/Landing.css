@@ -1,0 +1,39 @@
+:root{
+  --primario:#FE1CB5;
+  --secundario: #FCFC42;
+  --terciario: #7C73E6;
+  --rosaPalido:#F485F4;
+  --morado:#960166;
+  --blanco:#fff;
+  --negro:#000;
+}
+
+
+.bg-go {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url("https://cdn.alfabetajuega.com/wp-content/uploads/2018/10/alfabetajuega-pokemon-ash-peores-300917.jpg");
+    background-size: cover;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  
+   .btn-grad {
+      display: flex;
+      justify-content: center;
+      margin-top: 5px;
+      background-color: var(--terciario);
+      padding: 15px 45px;
+      color: var(--blanco);
+      width: 7rem;
+      
+  }
+
+  .btn-grad:hover{
+    font-weight: bold;
+    border-radius: 50%;
+  }
+   

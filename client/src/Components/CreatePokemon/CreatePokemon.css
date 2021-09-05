@@ -1,0 +1,44 @@
+:root{
+    --primario:#FE1CB5;
+    --secundario: #FCFC42;
+    --terciario: #7C73E6;
+    --rosaPalido:#F485F4;
+    --morado:#960166;
+    --blanco:#fff;
+    --negro:#000;
+  }
+
+
+
+.div-gral {
+    min-height: 100vh;
+    background: linear-gradient(to left, var(--primario) 0%, var(--secundario) 100%);
+}
+.danger {
+    color: red;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-body {
+     text-align: center;
+    justify-content: space-between;
+    margin-top: 80px;
+    
+}
+
+input {
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.btn-create {
+    background-color: var(--morado);
+    padding: 10px;
+    color:var(--blanco);
+    border-radius: 6px;
+    width: 7rem;
+    margin-top: 15px;
+}
