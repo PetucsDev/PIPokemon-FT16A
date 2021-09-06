@@ -23,7 +23,7 @@ function Home() {
     if (getTypes) {
       dispatch(getAllTypes());
     }
-    //eslint-disable-next-line react-hooks/exhaustive-deps         
+          
   }, [dispatch]);
 
 

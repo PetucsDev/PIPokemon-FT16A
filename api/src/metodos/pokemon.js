@@ -1,6 +1,7 @@
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
 const { v4: uuidv4 } = require('uuid');
+const { URL, POKEMON } = require("../Constants/constants");
 
 
 async function getAllPokemons(req, res) {
@@ -34,7 +35,7 @@ async function getAllPokemons(req, res) {
                 return res.json(pokeDb);
             } else {
 
-                let api = await axios.get('https://pokeapi.co/api/v2/pokemon/'`${lower}`); 
+                let api = await axios.get(`${URL}${POKEMON}/${lower}`);  
                 if(api) {
                     let type2 = api.data.types.map(el => el.type.name);
                     var pokeApi = {
@@ -59,7 +60,7 @@ async function getAllPokemons(req, res) {
   
     }  else {
         try {
-             const first = await axios.get('https://pokeapi.co/api/v2/pokemon');
+            const first = await axios.get(`${URL}${POKEMON}`);
             const next = await axios.get(first.data.next);
             const api40 = first.data.results.concat(next.data.results);
             const response = await Promise.all(api40.map(async pokemon => {
@@ -148,7 +149,7 @@ async function getPokemonById(req, res) {
     if(id) {
         try {
             if(!id.includes('-')) {
-                var api = await axios.get('https://pokeapi.co/api/v2/pokemon'/`${id}`);
+                var api = await axios.get(`${URL}${POKEMON}/${id}`);
                 let type = api.data.types.map(el => el.type.name);
                 var poke = {
                     name: api.data.name.charAt(0).toUpperCase() + api.data.name.slice(1),

@@ -17,7 +17,7 @@
   display: grid;
   gap: 1px;
   color: var(--morado);
-  
+  background-size: cover;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr));
   background: linear-gradient(to left, var(--primario) 0%, var(--secundario) 100%);
 }
@@ -47,7 +47,8 @@
 .paginate {
   display: flex;
   justify-content: center;
-  background: linear-gradient(to left, var(--primario) 0%, var(--secundario) 100%);
+  background-image: linear-gradient(to left, var(--primario) 0%, var(--secundario) 100%);
+  background-size: cover;
   height: 2rem;
   max-width: 100%;
 }
