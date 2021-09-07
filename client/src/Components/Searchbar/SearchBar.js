@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, } from "react-redux";
-import { getByName, clearPokemon } from "../../Redux/Actions/actions";
+import { getByName, clearPokemon } from '../../Actions/actions';
 import "./SearchBar.css";
 import { Link } from "react-router-dom";
 

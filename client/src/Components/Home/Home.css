@@ -31,7 +31,9 @@
   height: 1rem;
   padding: 1rem 0;
 }
-
+.todo{
+  background-image: linear-gradient(to left, var(--primario) 0%, var(--secundario) 100%);
+}
 .disabled {
   pointer-events: none;
   box-shadow: none;

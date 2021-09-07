@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import SearchBar from "../Searchbar/SearchBar";
 import { Link } from "react-router-dom";
-import { getAllPokemons, getAllTypes } from "../../Redux/Actions/actions";
+import { getAllPokemons, getAllTypes } from '../../Actions/actions';
 import { useSelector, useDispatch } from "react-redux";
 import Filter from "../Filter/Filter";
 import "./Home.css";
@@ -23,7 +23,7 @@ function Home() {
     if (getTypes) {
       dispatch(getAllTypes());
     }
-          
+          //eslint-disable-next-line react-hooks/exhaustive-deps  
   }, [dispatch]);
 
 
@@ -47,7 +47,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className="Todo">
       <SearchBar setSearch={setSearch} />
       {
         currentPokemons?.length > 0 

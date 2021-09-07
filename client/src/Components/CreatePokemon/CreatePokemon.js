@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CreatePokemon.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPokemon, getAllTypes } from '../../Redux/Actions/actions';
+import { addPokemon, getAllTypes } from '../../Actions/actions';
 import SearchBar from '../Searchbar/SearchBar';
 
 export default function CreatePokemon() {

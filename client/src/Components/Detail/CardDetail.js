@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearDetail, getById } from "../../Redux/Actions/actions";
+import { clearDetail, getById } from '../../Actions/actions';
 import Card from "../Card/Card";
 import SearchBar from "../Searchbar/SearchBar";
 import "./CardDetail.css";

@@ -1,4 +1,4 @@
-import { orderOption, filterPoke, filterTypes } from '../../Redux/Actions/actions';
+import { orderOption, filterPoke, filterTypes } from '../../Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
 import { Link } from 'react-router-dom';
