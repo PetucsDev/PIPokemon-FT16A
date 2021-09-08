@@ -23,7 +23,7 @@ export default function CreatePokemon() {
        speed: '',
        height: '', 
        weight: '',
-       image : 'https://i.playboard.app/p/AAUvwngrNsz0VgH-cA-girh64i7q941e6mxWACzbtr7a0A/default.jpg'
+       image : 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2019/11/pokemon-go_10.jpg?itok=j4Dy3nKb'
  
       });
      
@@ -150,7 +150,7 @@ export default function CreatePokemon() {
             {
                   alert.create ? (
                       <div className='create--confirm'>
-                          <h3 className='message--create'>Pokemon created succesfully!</h3>
+                          <h3 className='message--create'>Pokemon creado satisfactoriamente!</h3>
                       </div>
                   ) : null
               }
@@ -163,38 +163,31 @@ export default function CreatePokemon() {
     let errors = {};
     if (!input.name) {
       errors.name = 'PokeName is required';
-    } else if (!/^[A-Za-z]+$/.test(input.name)) {
-      errors.name = 'PokeName must be a text string';
+    
     }
     else if (!input.hp) {
       errors.hp = 'HP is required';
-    } else if (!/^([1-9]|[1-9][0-9]|[1-2][0-5][0-5])$/.test(input.hp)) {
-      errors.hp = 'HP is invalid';
+   
     }
     else if (!input.attack) {
       errors.attack = 'Attack is required';
-    } else if (!/^([5-9]|[1-9][0-9]|[1][0-8][0-9]|[1][9][0])$/.test(input.attack)) {
-      errors.attack = 'Attack is invalid';
+    
     }
     else if (!input.defense) {
       errors.defense = 'Defense is required';
-    } else if (!/^([5-9]|[1-9][0-9]|[1-2][0-2][0-9]|[2][3][0])$/.test(input.defense)) {
-      errors.defense = 'Defense is invalid';
+    
     }
     else if (!input.speed) {
       errors.speed = 'Speed is required';
-    } else if (!/^([5-9]|[1-9][0-9]|[1][0-1][0-6])$/.test(input.speed)) {
-      errors.speed = 'Speed is invalid';
-    }
+    
+     }
     else if (!input.weight) {
       errors.weight = 'Weight is required';
-    } else if (!/^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9])$/.test(input.weight)) {
-      errors.weight = 'Weight is invalid';
+   
     }
     else if (!input.height) {
       errors.height = 'Height is required';
-    } else if (!/^([1-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0][0])$/.test(input.height)) {
-      errors.height = 'Height is invalid';
+    
     }
     if (!input.type1 || input.type1 === "null") {
       errors.type1 = 'Type can not be null';

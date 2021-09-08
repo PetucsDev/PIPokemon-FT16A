@@ -24,7 +24,7 @@ async function getAllPokemons(req, res) {
                     types: type,
                     height: dataBase.height,
                     weight: dataBase.weight,
-                    image: "https://i.pinimg.com/originals/72/e7/8b/72e78b090e58bfd47a49e7e348c00978.jpg",
+                    image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FPok%25C3%25A9mon_GO&psig=AOvVaw1Feur7lHwY-Tlr8tNlpLjC&ust=1631212426956000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJj164KC8PICFQAAAAAdAAAAABAL",
                     hp: dataBase.hp,
                     attack: dataBase.attack,
                     defense: dataBase.defense,
@@ -83,7 +83,7 @@ async function getAllPokemons(req, res) {
                 let type = result.types.map(el => el.name);
                 return {
                     name: result.name.charAt(0).toUpperCase() + result.name.slice(1),
-                    image: "https://i.pinimg.com/originals/72/e7/8b/72e78b090e58bfd47a49e7e348c00978.jpg",
+                    image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FPok%25C3%25A9mon_GO&psig=AOvVaw1Feur7lHwY-Tlr8tNlpLjC&ust=1631212426956000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJj164KC8PICFQAAAAAdAAAAABAL", 
                     id: result.id,
                     types: type,
                     attack: result.attack
@@ -133,7 +133,7 @@ async function addPokemon(req, res) {
             weight: parseInt(data.weight),
         });
         await createdPoke.setTypes(data.types);       
-        return res.json({message: 'Pokemon created succesfully', pokemon: createdPoke});
+        return res.json({message: 'Pokemon creado satisfactoriamente', pokemon: createdPoke});
     }
     catch (error) {
         console.log(error);
@@ -177,7 +177,7 @@ async function getPokemonById(req, res) {
                 var finalPokemon ={
                     name : dataBase.name.charAt(0).toUpperCase() + dataBase.name.slice(1),
                     id: dataBase.id,
-                    image: "https://i.pinimg.com/originals/72/e7/8b/72e78b090e58bfd47a49e7e348c00978.jpg",
+                    image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FPok%25C3%25A9mon_GO&psig=AOvVaw1Feur7lHwY-Tlr8tNlpLjC&ust=1631212426956000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJj164KC8PICFQAAAAAdAAAAABAL",                                           
                     types: type,
                     height: dataBase.height,
                     weight: dataBase.weight,
@@ -200,11 +200,35 @@ async function getPokemonById(req, res) {
     }
 };
 
+async function updatePokemon (req, res){
+    const id = req.params.id;
 
-   
+    const { name, hp, attack, defense, speed, weight, height, type} = req.body
 
+    await Pokemon.update(
+        {
+          name,
+          hp,
+          attack,
+          defense,
+          speed,
+          weight,
+          height,
+          type
+        },
+        {
+          where: { id: id }
+        }
+      );
+
+      let pokemonActualizado = await Pokemon.findByPk(id);
+      res.json(pokemonActualizado);
+
+}
 module.exports = {
   getAllPokemons,
   addPokemon,
   getPokemonById,
+  updatePokemon
+  
 };
