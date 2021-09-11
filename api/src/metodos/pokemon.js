@@ -24,7 +24,7 @@ async function getAllPokemons(req, res) {
                     types: type,
                     height: dataBase.height,
                     weight: dataBase.weight,
-                    image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FPok%25C3%25A9mon_GO&psig=AOvVaw1Feur7lHwY-Tlr8tNlpLjC&ust=1631212426956000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJj164KC8PICFQAAAAAdAAAAABAL",
+                    image: "https://es.wikipedia.org/wiki/Pok%C3%A9mon_GO#/media/Archivo:Pok%C3%A9mon_GO_logo.svg",
                     hp: dataBase.hp,
                     attack: dataBase.attack,
                     defense: dataBase.defense,
@@ -55,14 +55,27 @@ async function getAllPokemons(req, res) {
             };
         
         } catch (error) {
-         return res.status(404).send({error: "Pokemon not found :("});
+         return res.status(404).send({error: "Pokemon not found"});
         };
   
     }  else {
         try {
             const first = await axios.get(`${URL}${POKEMON}`);
             const next = await axios.get(first.data.next);
-            const api40 = first.data.results.concat(next.data.results);
+            const fiveMore = await axios.get(next.data.next);
+            // console.log(fiveMore.data.results[1]);
+            // console.log(fiveMore.data.results[2]);
+
+            var arr = []
+            for (let i = 0; i <= 4; i++) {
+            
+                arr.push(fiveMore.data.results[i]);   
+                
+            }
+            
+            
+            
+            const api40 = first.data.results.concat(next.data.results).concat(arr);
             const response = await Promise.all(api40.map(async pokemon => {
                 let url = await axios.get(pokemon.url)
                 let type = url.data.types.map(el => el.type.name)
@@ -71,7 +84,8 @@ async function getAllPokemons(req, res) {
                     image: url.data.sprites.other.dream_world.front_default,
                     id: url.data.id, 
                     types: type,
-                    attack: url.data.stats[1].base_stat
+                    attack: url.data.stats[1].base_stat,
+                    speed:  url.data.stats[5].base_stat
                 }
                 
             })); 
@@ -83,10 +97,11 @@ async function getAllPokemons(req, res) {
                 let type = result.types.map(el => el.name);
                 return {
                     name: result.name.charAt(0).toUpperCase() + result.name.slice(1),
-                    image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FPok%25C3%25A9mon_GO&psig=AOvVaw1Feur7lHwY-Tlr8tNlpLjC&ust=1631212426956000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJj164KC8PICFQAAAAAdAAAAABAL", 
+                    image: "https://es.wikipedia.org/wiki/Pok%C3%A9mon_GO#/media/Archivo:Pok%C3%A9mon_GO_logo.svg", 
                     id: result.id,
                     types: type,
-                    attack: result.attack
+                    attack: result.attack,
+                    speed: result.speed
                 }
   
             }); 
@@ -177,7 +192,7 @@ async function getPokemonById(req, res) {
                 var finalPokemon ={
                     name : dataBase.name.charAt(0).toUpperCase() + dataBase.name.slice(1),
                     id: dataBase.id,
-                    image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FPok%25C3%25A9mon_GO&psig=AOvVaw1Feur7lHwY-Tlr8tNlpLjC&ust=1631212426956000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJj164KC8PICFQAAAAAdAAAAABAL",                                           
+                    image: "https://es.wikipedia.org/wiki/Pok%C3%A9mon_GO#/media/Archivo:Pok%C3%A9mon_GO_logo.svg",                                           
                     types: type,
                     height: dataBase.height,
                     weight: dataBase.weight,

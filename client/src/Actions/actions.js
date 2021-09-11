@@ -107,6 +107,7 @@ export const filterTypes = (type) => async (dispatch) => {
 
 //Ordenamiento alfábetico y por fuerza.
 export const orderOption = (option, array) => (dispatch) => {
+  
   if(option === 'az') {
       console.log('ARRAY: ', array);
       const one = array.sort((a, b) => {
@@ -147,10 +148,13 @@ export const orderOption = (option, array) => (dispatch) => {
     if(option === 'attack-'){
       const attack = array.sort((a,b) => a.attack - b.attack)
       dispatch({type: FILTER_POKEMON, payload:[...attack]}) 
+      
     }
+  
     if(option === 'null') {
       dispatch({type: FILTER_POKEMON, payload: []})
     }
+   
   };
 
 

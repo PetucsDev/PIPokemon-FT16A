@@ -12,8 +12,11 @@ function Home() {
   const getPokemons = useSelector((state) => state.getPokemons);
   const getTypes = useSelector((state) => state.getTypes);
   const searchPokemon = useSelector((state) => state.searchPokemon);
-
+ 
   const [search, setSearch] = useState(false);
+  let [currentPage, setCurrentPage] = useState(1);
+  let [pokemonsPerPage, setPokemonsPerPage] = useState(9);
+
 
   useEffect(() => {
     dispatch(getAllPokemons());
@@ -27,24 +30,47 @@ function Home() {
   }, [dispatch]);
 
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage] = useState(12);
+  
+ 
 
   const indexOfLastPost = currentPage * pokemonsPerPage;
   const indexOfFirstPost = indexOfLastPost - pokemonsPerPage;
   const currentPokemons = getPokemons.slice(indexOfFirstPost, indexOfLastPost);
-
+ 
   const pageNumber = Math.ceil(getPokemons.length / pokemonsPerPage);
+  
+
+ 
 
   const nextPage = () => {
-    if (currentPage < pageNumber) setCurrentPage(currentPage + 1);
-    else setCurrentPage(1);
+
+    
+  
+      setCurrentPage((currentPage) => currentPage + 1);
+      setPokemonsPerPage(12);
+    
   };
 
   const prePage = () => {
-    if (currentPage !== 1) setCurrentPage(currentPage - 1);
-    else setCurrentPage(pageNumber);
+    if (currentPage === 1){
+      setPokemonsPerPage(9);
+      
+     
+     
+    } 
+   else {
+    
+     setCurrentPage(currentPage - 1);
+     setPokemonsPerPage(12);
+     
+     
+   }
+     
   };
+
+ console.log(pokemonsPerPage);
+
+ 
 
   return (
     <div className="Todo">
@@ -92,15 +118,15 @@ function Home() {
         </div>
         <div className="paginate">
           <button
-            className={`${currentPage === 1 ? "disabled" : ""}`}
+            // className={`${currentPage === 1 ? "disabled" : ""}`}
             onClick={() => {
-              prePage();
+              prePage()
             }}
           >
             Previous
           </button>
           <button
-            className={`${currentPage === pageNumber ? "disabled" : ""}`}
+             className={`${currentPage === pageNumber ? "disabled" : ""}`}
             onClick={() => {
               nextPage();
             }}

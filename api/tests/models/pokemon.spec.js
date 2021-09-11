@@ -23,13 +23,13 @@ describe("Pokemon model", () => {
   });
 
   describe("STATS", () => {
-    it("Arroja un error si vida no es numero", (done) => {
+    it("La vida debe ser un numero", (done) => {
       Pokemon.create({ name: "Pikachu", hp: "asd" })
         .then(() => done(new Error("Vida no es un numero")))
         .catch(() => done());
     });
 
-    it("Arroja un error si fuerza no es numero", (done) => {
+    it("La fuerza debe ser un numero", (done) => {
       Pokemon.create({ name: "Pikachu", attack: "asd" })
         .then(() => done(new Error("Fuerza no es un numero")))
         .catch(() => done());

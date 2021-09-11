@@ -42,7 +42,6 @@ function Filter() {
             <option value = "attack-" name = "null">Attack -</option>
 
 
-
         </select>
 
         <div className="filterTypes">
