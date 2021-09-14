@@ -11,7 +11,7 @@ import {
 import axios from 'axios'; 
 
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_URL =  'http://localhost:3001';
 
 
 //Obteniendo todos los juegos.
@@ -104,6 +104,8 @@ export const filterTypes = (type) => async (dispatch) => {
   const res = await axios.get(`${API_URL}/pokemon?type=${type}`);
   dispatch({type: FILTER_POKEMON, payload: res.data})
 }
+
+
 
 //Ordenamiento alfábetico y por fuerza.
 export const orderOption = (option, array) => (dispatch) => {

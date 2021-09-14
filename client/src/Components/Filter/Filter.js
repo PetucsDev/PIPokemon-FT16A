@@ -23,7 +23,7 @@ function Filter() {
         dispatch(filterTypes(e.target.value))
     }
 
-
+   
     return (
         <div>
             <div className = "filter">
@@ -52,6 +52,7 @@ function Filter() {
                     ))}
                 </select>  
          </div>       
+
         </div>
 
         <ul className = "filter1">

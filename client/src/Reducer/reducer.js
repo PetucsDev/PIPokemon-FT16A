@@ -11,7 +11,7 @@ import {
 
 
 const initialState = {
-    getPokemons: [], //Me traigo los 40 pokemons.
+    getPokemons: [], //Me traigo los 45 pokemons.
     getTypes: [], //Cargo los 20 tipos.
     searchPokemon: {}, //Busco por query(searchBar).
     createPokemon: {}, //Crear nuevo pokemon.

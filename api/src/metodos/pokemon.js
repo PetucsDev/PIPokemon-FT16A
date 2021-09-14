@@ -24,7 +24,7 @@ async function getAllPokemons(req, res) {
                     types: type,
                     height: dataBase.height,
                     weight: dataBase.weight,
-                    image: "https://es.wikipedia.org/wiki/Pok%C3%A9mon_GO#/media/Archivo:Pok%C3%A9mon_GO_logo.svg",
+                    image: "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2021/07/pokemon-go-2392325.jpg?itok=owQk1S4S",
                     hp: dataBase.hp,
                     attack: dataBase.attack,
                     defense: dataBase.defense,
@@ -85,7 +85,7 @@ async function getAllPokemons(req, res) {
                     id: url.data.id, 
                     types: type,
                     attack: url.data.stats[1].base_stat,
-                    speed:  url.data.stats[5].base_stat
+                    //speed:  url.data.stats[5].base_stat
                 }
                 
             })); 
@@ -97,11 +97,11 @@ async function getAllPokemons(req, res) {
                 let type = result.types.map(el => el.name);
                 return {
                     name: result.name.charAt(0).toUpperCase() + result.name.slice(1),
-                    image: "https://es.wikipedia.org/wiki/Pok%C3%A9mon_GO#/media/Archivo:Pok%C3%A9mon_GO_logo.svg", 
+                    image: "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2021/07/pokemon-go-2392325.jpg?itok=owQk1S4S", 
                     id: result.id,
                     types: type,
                     attack: result.attack,
-                    speed: result.speed
+                    //speed: result.speed
                 }
   
             }); 
@@ -163,7 +163,7 @@ async function getPokemonById(req, res) {
     let id = req.params.id; 
     if(id) {
         try {
-            if(!id.includes('-')) {
+            if(!id.includes('-')) { 
                 var api = await axios.get(`${URL}${POKEMON}/${id}`);
                 let type = api.data.types.map(el => el.type.name);
                 var poke = {
@@ -192,7 +192,7 @@ async function getPokemonById(req, res) {
                 var finalPokemon ={
                     name : dataBase.name.charAt(0).toUpperCase() + dataBase.name.slice(1),
                     id: dataBase.id,
-                    image: "https://es.wikipedia.org/wiki/Pok%C3%A9mon_GO#/media/Archivo:Pok%C3%A9mon_GO_logo.svg",                                           
+                    image: "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2021/07/pokemon-go-2392325.jpg?itok=owQk1S4S",                                           
                     types: type,
                     height: dataBase.height,
                     weight: dataBase.weight,
@@ -215,35 +215,12 @@ async function getPokemonById(req, res) {
     }
 };
 
-async function updatePokemon (req, res){
-    const id = req.params.id;
 
-    const { name, hp, attack, defense, speed, weight, height, type} = req.body
 
-    await Pokemon.update(
-        {
-          name,
-          hp,
-          attack,
-          defense,
-          speed,
-          weight,
-          height,
-          type
-        },
-        {
-          where: { id: id }
-        }
-      );
 
-      let pokemonActualizado = await Pokemon.findByPk(id);
-      res.json(pokemonActualizado);
-
-}
 module.exports = {
   getAllPokemons,
   addPokemon,
-  getPokemonById,
-  updatePokemon
-  
+  getPokemonById
+ 
 };
