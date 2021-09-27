@@ -4,6 +4,8 @@ const { v4: uuidv4 } = require('uuid');
 const { URL, POKEMON } = require("../Constants/constants");
 
 
+
+
 async function getAllPokemons(req, res) {
     let name = req.query.name;
     if(name) {
@@ -12,6 +14,7 @@ async function getAllPokemons(req, res) {
              const dataBase = await Pokemon.findOne({
                 where:{
                     name: lower
+                   
                 },
                 include: [Type]
             });
@@ -63,9 +66,7 @@ async function getAllPokemons(req, res) {
             const first = await axios.get(`${URL}${POKEMON}`);
             const next = await axios.get(first.data.next);
             const fiveMore = await axios.get(next.data.next);
-            // console.log(fiveMore.data.results[1]);
-            // console.log(fiveMore.data.results[2]);
-
+         
             var arr = []
             for (let i = 0; i <= 4; i++) {
             
@@ -85,7 +86,7 @@ async function getAllPokemons(req, res) {
                     id: url.data.id, 
                     types: type,
                     attack: url.data.stats[1].base_stat,
-                    //speed:  url.data.stats[5].base_stat
+                    
                 }
                 
             })); 
@@ -101,7 +102,7 @@ async function getAllPokemons(req, res) {
                     id: result.id,
                     types: type,
                     attack: result.attack,
-                    //speed: result.speed
+                   
                 }
   
             }); 
@@ -216,11 +217,9 @@ async function getPokemonById(req, res) {
 };
 
 
-
-
 module.exports = {
   getAllPokemons,
   addPokemon,
   getPokemonById
- 
+
 };

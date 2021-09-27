@@ -14,7 +14,7 @@ import axios from 'axios';
 const API_URL =  'http://localhost:3001';
 
 
-//Obteniendo todos los juegos.
+//Obteniendo todos los pokemons.
 export const getAllPokemons = () => async (dispatch) => {
     try {
         const res = await axios.get(`${API_URL}/pokemon`);
@@ -44,6 +44,7 @@ export const getAllTypes = () => async (dispatch) => {
 //Buscando pokemon por query.
 export const getByName = (name) => async (dispatch) => {
     try {
+      
         const res = await axios.get(`${API_URL}/pokemon?name=${name}`);
         dispatch({
             type: SEARCH_POKEMONS,
